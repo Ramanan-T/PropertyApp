@@ -1,0 +1,28 @@
+%= render "layouts/navbar"%>
+
+<div style="display:inline-block;margin-left:350px;padding:20px;margin-top:20px;width:50%">
+<table class="table">
+  <tr>
+    
+    <th class= "thead-dark">Property Name</th>
+    <th class= "thead-dark">Renter Name</th>
+    <th> </th>
+    
+  </tr>
+  
+ 
+
+  <tr>
+    
+    <td><%= @checkin.property.property_name %></td>
+    <td><%= @checkin.renter.name%></td>
+    <td><%= link_to "Destroy", checkin_path(@checkin),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } ,class:"btn btn-danger btn-sm"%></td>
+    
+    
+  </tr>
+
+<%= hidden_field_tag :property_id, params[:property_id] %>
+</table>
+

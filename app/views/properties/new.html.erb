@@ -1,5 +1,5 @@
 <html>
-<%if agent_user_signed_in?  %>
+<%if agent_signed_in?  %>
 <%= render "layouts/navbar"%>
 <h2>Add a new Property here</h2>
 <br>
@@ -27,10 +27,7 @@
   </div>
 
 
-  <div>
-    <%= form.label :company_name %><br>
-    <%= form.text_field :company_name %>
-  </div>
+ 
 
   <%= form.label :Addimages,class:"sr-only"%>
  <%= form.file_field :images, multiple: true ,class:"form-control"%>

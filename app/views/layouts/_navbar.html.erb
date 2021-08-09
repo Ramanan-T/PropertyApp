@@ -22,15 +22,36 @@
       
       </li>
       
+      
+      <%if agent_signed_in? %>
       <li class="nav-item">
       <%= link_to "Companies", companies_path, :class => 'nav-link'  %>
       </li>
       
-      <%if agent_signed_in? %>
+      <%= link_to "Logout", destroy_agent_session_path, method: :delete, :class => 'nav-link'  %>
+      <li class="nav-item">
+      <li class="nav-item">
+      <%= link_to "Properties", properties_path, :class => 'nav-link'  %>
+      </li>
+        <%= link_to "Smartlock", new_smartlock_path, :class => 'nav-link'  %>
+        </li>
+      <%else%>
+      <li class="nav-item">
+      <%= link_to "Properties", properties_path, :class => 'nav-link'  %>
+      </li>
+      
+
+      <%if renter_signed_in? %>
       <%= link_to "Logout", destroy_agent_session_path, method: :delete, :class => 'nav-link'  %>
       <%else%>
+      <li class="nav-item">
+        <%= link_to "Login", new_agent_session_path, :class => 'nav-link'  %>
+        </li>
       <%= link_to "Create a new Company", new_company_path, :class => 'nav-link'  %>
       <%end%>
+      
+      <%end%>
+
       </span>
     </div>
   </div>

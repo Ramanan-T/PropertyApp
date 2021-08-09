@@ -1,19 +1,35 @@
-<%# not used %>
 
-<% if current_user.type=="Agent"%>
 <%= render "layouts/navbar"%>
-
-
-
-<% @smartlock.each do |post| %>
-
-    <%= post.serial_num%>
-    <%= post.property_id%>
-
-   <%= link_to "assign" ,smartlock_path(post, post: { property_id: params[:property_id] }), method: 'patch' %>   
-
+<% if agent_signed_in?%>
+<div style="display:inline-block;margin-left:350px;padding:20px;margin-top:20px;width:50%">
+<table class="table">
+  <tr>
     
-    <%= hidden_field_tag :property_id, params[:property_id] %>
+    
+    <th class= "thead-dark">Smartlock Serial Number</th>
+    <th> </th>
+    
+  </tr>
+  
  
+<% @smartlock.each do |post| %>
+  <tr>
+    <td><%= post.serial_num %></td>
+    
+   
+    <td><%= link_to "assign" ,property_add_smartlock_path(params[:property_id],post.id), method: 'patch' %>   </td>
+    
+  </tr>
+<% end %>
+<%= hidden_field_tag :property_id, params[:property_id] %>
+</table>
+
+</div>
 <%end%>
-<%end%>
+
+
+
+
+
+
+

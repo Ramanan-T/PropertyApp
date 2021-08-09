@@ -28,4 +28,15 @@ class PropertiesController < ApplicationController
         @property = Property.find(params[:id])
         @property.destroy
     end
+
+    def add_smartlock
+        @smartlock = Smartlock.find(params[:id])
+       if @smartlock.update(:property_id=>params[:property_id])
+        redirect_to  properties_path
+       else 
+        render 'index'
+       end 
+        
+    end 
+
 end

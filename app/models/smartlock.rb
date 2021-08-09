@@ -10,10 +10,8 @@ class Smartlock < ApplicationRecord
     def add_codes_to_smartlock
         for i in 0..9 do
             newcode= rand(10 ** 6)
-            if self.property_id.blank?
-                self.property_id=-1;
-            end
-            Code.create!(:code=>newcode,:smartlock_id=>self.id,:property_id=>self.property_id)
+            
+            Code.create!(:code=>newcode,:smartlock_id=>self.id)
             
         end
     end

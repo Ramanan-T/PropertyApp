@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  renter_id: 1
+  property_id: 1
+  serial_code: 1
+
+two:
+  renter_id: 1
+  property_id: 1
+  serial_code: 1

@@ -7,7 +7,15 @@ Rails.application.routes.draw do
   end
   resources:companies
   resources:welcome
-  resources:properties
+  resources:properties do
+    get '/add_smartlock/:id(.:format)' => "properties#add_smartlock" ,:as => 'add_smartlock'
+  end 
+  resources:smartlock
+  resources:codes
   root to: "welcome#index"
+
+  get '/checkin' => 'checkin#index'
+get '/checkin/new' => 'checkin#new'
+post '/checkins' => 'checkin#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
