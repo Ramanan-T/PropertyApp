@@ -1,0 +1,30 @@
+<%= render "layouts/navbar"%>
+
+<div style="display:inline-block;margin-left:350px;padding:20px;margin-top:20px;width:50%">
+<table class="table">
+  <tr>
+    <th class= "thead-dark">Name</th>
+    <th class= "thead-dark">Contact</th>
+    <th class= "thead-dark"></th>
+    <th class= "thead-dark"></th>
+    <th class= "thead-dark"></th>
+    
+  </tr>
+  
+ 
+
+  <tr>
+    <td><%= @companies.company_name %></td>
+    <td><%= @companies.company_contact %></td>
+    <td><%= @companies.company_address %></td>
+    
+  </tr>
+
+</table>
+<%if current_agent.role=="Admin" %>
+<span>
+<td><%= link_to 'Add a new agent ',new_agent_registration_path,class:"btn btn-primary btn-sm"%></td>
+</span> 
+  
+<%end%>
+</div>

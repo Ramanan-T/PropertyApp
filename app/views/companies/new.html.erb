@@ -1,0 +1,26 @@
+<h1> Adding Company </h1>
+
+<%= form_for @company , url:'/companies' do |form| %>
+  <div>
+    <%= form.label :company_name %><br>
+    <%= form.text_field :company_name %>
+  </div>
+
+  <div>
+    <%= form.label :company_contact%><br>
+    <%= form.text_area :company_contact %>
+  </div>
+
+  <div>
+    <%= form.label :company_address%><br>
+    <%= form.text_area :company_address%>
+  </div>
+
+
+
+  
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

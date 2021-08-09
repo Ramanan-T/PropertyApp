@@ -1,0 +1,34 @@
+<%= render "layouts/navbar"%>
+<%if current_user.type=="Agent" %>
+<div style="display:inline-block;margin-left:350px;padding:20px;margin-top:20px;width:50%">
+<table class="table">
+  <tr>
+    <th class= "thead-dark">Code</th>
+    <th class= "thead-dark">Property Name</th>
+    <th class= "thead-dark">Smartlock Serial Number</th>
+    <th> </th>
+    
+  </tr>
+  
+ 
+<% @code.each do |post| %>
+  <tr>
+    <td><%= post.code %></td>
+    <td><%= post.property.property_name %></td>
+    <td><%= post.smartlock.serial_num%></td>
+    <td><span> <%= button_to "Delete Code", post, :method=>:delete, :class=>:destroy ,class:"btn btn-danger btn-sm" %></span></td>
+    
+    
+  </tr>
+<% end %>
+</table>
+<%= hidden_field_tag :property_id, params[:property_id] %>
+
+  
+
+</div>
+
+
+
+
+<%end%>

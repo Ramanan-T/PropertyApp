@@ -1,0 +1,19 @@
+<%# not used %>
+
+<% if current_user.type=="Agent"%>
+<%= render "layouts/navbar"%>
+
+
+
+<% @smartlock.each do |post| %>
+
+    <%= post.serial_num%>
+    <%= post.property_id%>
+
+   <%= link_to "assign" ,smartlock_path(post, post: { property_id: params[:property_id] }), method: 'patch' %>   
+
+    
+    <%= hidden_field_tag :property_id, params[:property_id] %>
+ 
+<%end%>
+<%end%>

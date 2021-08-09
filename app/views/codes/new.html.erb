@@ -1,0 +1,16 @@
+<h1> Adding Code for Checkin </h1>
+
+<%= form_for @code , url:codes_path do |form| %>
+   <%= @code.errors.full_messages %>
+  <div>
+    <%= form.label :code %><br>
+    <%= form.text_field :code %>
+  </div>
+
+  <%= hidden_field_tag :property_id, params[:property_id] %>
+  
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

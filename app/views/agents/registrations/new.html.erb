@@ -1,0 +1,47 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "agents/shared/error_messages", resource: resource %>
+  <div>
+  <%= f.label :name ,class: 'sr-only'%><br />
+  <%= f.text_field :name, autofocus: true ,class: 'form-control-sm' %>
+</div>
+<br>
+<div class="field">
+ <%= f.label :email,class: 'sr-only ml-4' %><br />
+ <%= f.email_field :email, autofocus: true, autocomplete: "email",class: 'form-control-sm ml-4' %>
+</div>
+<br>
+<div>
+  <%= f.label :phone ,class: 'sr-only ml-4'%><br />
+  <%= f.text_field :phone, autofocus: true,class: 'form-control-sm ml-4' %>
+</div>
+<br>
+<div class="field">
+ <%= f.label :password ,class: 'sr-only'%>
+ <% if @minimum_password_length %>
+ <em>(<%= @minimum_password_length %> characters minimum)</em>
+ <% end %><br />
+ <%= f.password_field :password, autocomplete: "new-password" ,class: 'form-control-sm'%>
+</div>
+<br>
+<div class="field">
+ <%= f.label :password_confirmation ,class: 'sr-only'%><br />
+ <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+</div>
+<br>
+<%if current_agent.role=="Admin" %>
+<%= f.hidden_field :company_id, value: current_agent.company_id %>
+<%else%>
+
+<% @company=Company.first %>
+<%= f.hidden_field :company_id, value: @company.id %>
+<%= f.hidden_field :role, value: 'Admin' %>
+<%end%>
+
+<br>
+<div class="actions">
+ <%= f.submit "Sign up",class: 'btn btn-primary' %>
+</div>
+<% end %>
+</div>

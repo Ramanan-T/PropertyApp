@@ -1,0 +1,14 @@
+<h1> Adding Smartlock </h1>
+
+<%= form_for @smartlock , url:smartlock_index_path do |form| %>
+  <div>
+    <%= form.label :serial_num %><br>
+    <%= form.text_field :serial_num %>
+  </div>
+
+ hello
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
