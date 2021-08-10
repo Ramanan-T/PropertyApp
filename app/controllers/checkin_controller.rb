@@ -13,7 +13,7 @@ class CheckinController < ApplicationController
             
             
             @smart_id = Smartlock.where(:property_id=> @checkin.property_id)
-            @code= Code.where(:smartlock_id => @smart_id).first.includes(:renter)
+            @code= Code.where(:smartlock_id => @smart_id).first
                   
                 SendCodeMailer.with(code: @code).send_code_email.deliver_now 
             

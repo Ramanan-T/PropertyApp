@@ -21,7 +21,11 @@ class PropertiesController < ApplicationController
     end
 
     def index
-        @property= Property.all
+        if agent_signed_in?
+        @property= Property.where(:company_id=>current_agent.company_id);
+        else
+            @property=Property.all
+        end
     end 
 
     def destroy

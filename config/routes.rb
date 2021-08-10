@@ -7,15 +7,24 @@ Rails.application.routes.draw do
   end
   resources:companies
   resources:welcome
+  resources:login 
   resources:properties do
     get '/add_smartlock/:id(.:format)' => "properties#add_smartlock" ,:as => 'add_smartlock'
   end 
-  resources:smartlock
-  resources:codes
   root to: "welcome#index"
 
+  resources:smartlock
+  resources:codes
+  
+  post '/agentscreate', action: :create, controller: :agents
+  get '/agents/new' => 'agents#new' 
   get '/checkin' => 'checkin#index'
 get '/checkin/new' => 'checkin#new'
 post '/checkins' => 'checkin#create'
+get '/addsubagents', action: :addagents,controller: :agents, as: :addagents
+
+
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

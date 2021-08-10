@@ -5,7 +5,9 @@ class CodesController < ApplicationController
 
 
     def index
-        @code = Code.where(:property_id => params[:property_id]).includes(:smartlock)
+        # @smartlock = Smartlock.(params[:property_id])
+        @smartlock =Smartlock.find_by property_id: params[:property_id]
+        @code = Code.where(:smartlock_id => @smartlock.id).includes(:smartlock)
     end 
 
     def create
