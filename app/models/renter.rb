@@ -4,5 +4,5 @@ class Renter < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one:checkin
+  has_one:checkin , dependent: :destroy
 end

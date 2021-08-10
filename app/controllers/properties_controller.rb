@@ -30,7 +30,9 @@ class PropertiesController < ApplicationController
 
     def destroy
         @property = Property.find(params[:id])
-        @property.destroy
+        if @property.destroy
+        redirect_to properties_path
+        end 
     end
 
     def add_smartlock

@@ -13,10 +13,7 @@ class SmartlockController < ApplicationController
             render 'new'
         end
     end 
-    def show
-        @smartlock= Smartlock.find(params[:id])
-    end
-
+    
     def index
         @smartlock= Smartlock.where(:property_id=>nil)
         
@@ -37,4 +34,14 @@ class SmartlockController < ApplicationController
         redirect_to smartlocks_path
         
     end 
+
+    def destroy
+        @smartlock = Smartlock.find(params[:id])
+
+        if @smartlock.destroy
+            flash.alert = "Smartlock Removed"
+            redirect_to properties_path
+        end 
+
+    end
 end

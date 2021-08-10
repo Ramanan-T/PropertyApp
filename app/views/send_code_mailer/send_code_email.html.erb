@@ -4,10 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p><h2><b>Hello Ramanan,</b></h2> </p>
+    <p><h2><b>Hello Renter,</b></h2> </p>
     <br>
+    <p>The property you wish to enter is <%= @property.property_name %></p>
     <p>
-    The Code for Checkin is :<br><h1><%= @code.code %></h1>
+    The Code for Checkin is :<br><h1><b><%= @property.smartlock.codes.first.code %></b></h1>
     
    
   

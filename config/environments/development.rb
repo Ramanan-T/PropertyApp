@@ -20,6 +20,8 @@ Rails.application.configure do
     port:          '587',
     authentication: :plain}
     
+
+    config.scoped_views = true
   # Do not eager load code on boot.
   config.eager_load = false
 

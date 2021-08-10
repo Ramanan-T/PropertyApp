@@ -16,7 +16,7 @@
   
   <div class="card" style="margin-left:20px;margin-top:10px;margin-right:20px;padding:10px">
   
-  <%= image_tag("logos/logo.png", height:100 , width:150)  %>
+  <%= image_tag(post.images[0], height:100 , width:150)  %>
   <span class="elements" , style="display:inline">
   Property Name:
   <%= post.property_name %>
@@ -32,12 +32,18 @@
   </span>
 
   <br>
+  <% @smart= Smartlock.where(:property_id => post.id)%>
   <div class="flex-inline ">
   <%= link_to 'View Property',property_path(post.id), class:"btn btn-primary btn-sm"%>
   
     <%= link_to 'Edit', edit_property_path(post),class:"btn btn-primary btn-sm" %>
-    
+    <%  if @smart.blank? %>
     <%= link_to 'Assign Smartlock', {:controller => "smartlock", :action => "index", :property_id => post.id },class:"btn btn-info btn-sm"%> 
+    <% else %>
+    <div style="display:inline-block">
+   <%= button_to "Remove Smartlock",@smart.first, :method=>:delete, :class=>:destroy ,class:"btn btn-danger btn-sm" ,style:"display:inline;"%>
+   </div> 
+   <%end%>
     <%= link_to 'Add Code', {:controller => "codes", :action => "new", :property_id => post.id },class:"btn btn-info btn-sm"%> 
     <%= link_to 'View Codes', {:controller => "codes", :action => "index", :property_id => post.id },class:"btn btn-info btn-sm"%> 
     <br>

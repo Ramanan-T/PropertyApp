@@ -1,19 +1,25 @@
 Rails.application.routes.draw do
   
   devise_for :renters
+ 
+
   devise_for :agents
   devise_scope :agent do
     get '/agents/sign_out' => 'devise/sessions#destroy'
   end
   resources:companies
   resources:welcome
-  resources:login 
+  resources:login do
+  get '/index' => 'login#index',:as=> 'login_index'
+  end
   resources:properties do
     get '/add_smartlock/:id(.:format)' => "properties#add_smartlock" ,:as => 'add_smartlock'
   end 
   root to: "welcome#index"
 
-  resources:smartlock
+  resources:smartlock do
+    delete '/agents/:id' => 'devise/sessions#destroy'
+  end
   resources:codes
   
   post '/agentscreate', action: :create, controller: :agents

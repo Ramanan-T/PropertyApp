@@ -6,8 +6,8 @@ class AgentsController < ApplicationController
     def create
         @agent= Agent.new(params.require(:agent).permit(:name,:email,:phone,:company_id,:role))
         @agent.role=nil
-        @agent.password="hello123"
-        @agent.password_confirmation="hello123"
+        @agent.password=params[:email].split('@',2)[0]
+        @agent.password_confirmation=@agent.password 
 
         if @agent.save
             redirect_to properties_path

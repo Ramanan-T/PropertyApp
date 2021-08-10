@@ -1,8 +1,8 @@
 class Property < ApplicationRecord
     belongs_to:company 
     has_many_attached :images, dependent: :destroy
-    has_one:smartlock
-
+    has_one:smartlock , dependent: :destroy
+    has_many:checkins , dependent: :destroy
     validate :image_type 
     
 def thumbnail input

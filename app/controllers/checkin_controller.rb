@@ -9,17 +9,22 @@ class CheckinController < ApplicationController
         @checkin.property_id = params[:property_id]
         @checkin.renter_id = current_renter.id
 
-        if @checkin.save
+        @property= Property.find(params[:property_id])
+        var=@property.smartlock.serial_num - @checkin.serial_code
+        
             
+            if var==0
             
-            @smart_id = Smartlock.where(:property_id=> @checkin.property_id)
-            @code= Code.where(:smartlock_id => @smart_id).first
                   
-                SendCodeMailer.with(code: @code).send_code_email.deliver_now 
+                SendCodeMailer.with(property: @property).send_code_email.deliver_now 
             
-            render 'index'
+                flash.now[:notice] = "Code has been sent to you email"
+                @property.smartlock.codes.first.destroy
+                render 'new'
+            
             
         else
+            flash.now[:notice] = "Wrong Smartlock Serial number "
             render 'new'
         end 
 
