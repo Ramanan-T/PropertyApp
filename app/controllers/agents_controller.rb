@@ -4,16 +4,19 @@ class AgentsController < ApplicationController
         @agent =Agent.new
     end 
     def create
-        @agent= Agent.new(params.require(:agent).permit(:name,:email,:phone,:company_id,:role,:password))
+        @agent= Agent.new(params.require(:agent).permit(:name,:email,:phone,:company_id,:role))
         
+        if @agent.role=="Non-admin"
+            @agent.password= @agent.email.split('@',2)[0]
+            @agent.password_confirmation=@agent.password
+        end 
 
-        @agent.password= @agent.email.split('@',2)[0]
-        @agent.password_confirmation=@agent.password 
-
+       
         if @agent.save
             redirect_to properties_path
         else
-            render 'new'
+            flash.alert ="Sub agent was not created"
+            redirect_to companies_path
         end 
 
 
@@ -27,7 +30,7 @@ class AgentsController < ApplicationController
         @agent = Agent.find(params[:id])
 
         if @agent.destroy
-            redirect_to "Properties_path"
+            redirect_to companies_path
             flash.alert =" Sub Agent has been deleted"
         end
     end

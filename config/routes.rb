@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :agents
   devise_scope :agent do
     get '/agents/sign_out' => 'devise/sessions#destroy'
+    delete '/agents' => 'agents#destroy'
     
   end
   resources:companies
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
     delete '/agents/:id' => 'devise/sessions#destroy'
   end
   resources:codes
-  
+  get 'agents/:id' => 'agents#destroy', :via => :delete, :as => :admin_destroy_user
   post '/agentscreate', action: :create, controller: :agents
   get '/agents/new' => 'agents#new' 
   get '/checkin' => 'checkin#index'

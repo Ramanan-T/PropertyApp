@@ -17,11 +17,10 @@ class CodesController < ApplicationController
 
     def create
         
-        @code = Code.new(params.require(:code).permit(:code,:smartlock_id))
-
+        @code = Code.new(params.require(:code).permit(:code,:smartlock_id,:property_id))
+        @smartlock = Smartlock.where(:property_id=>params[:property_id])
         
-        @prop = Smartlock.find_by property_id: @code.property_id
-        @code.smartlock_id = @prop.id
+        @code.smartlock_id = @smartlock.first.id
 
         if @code.save
             redirect_to properties_path

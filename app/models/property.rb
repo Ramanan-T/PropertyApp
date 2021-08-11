@@ -4,6 +4,7 @@ class Property < ApplicationRecord
     has_one:smartlock , dependent: :destroy
     has_many:checkins , dependent: :destroy
     validate :image_type 
+   
     
 def thumbnail input
     return self.images[input].variant(resize: '200X200!').processed
@@ -23,6 +24,8 @@ end
             end
         end
     end
+
+    
 
     
 end

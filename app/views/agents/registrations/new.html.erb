@@ -35,8 +35,7 @@
 <%= f.hidden_field :company_id, value: current_agent.company_id %>
 <%else%>
 
-<% @company=Company.first %>
-<%= f.hidden_field :company_id, value:1370 %>
+
 <%= f.hidden_field :role, value: 'Admin' %>
 <%end%>
 <%= f.hidden_field :role, value:"Admin"  %>

@@ -10,8 +10,13 @@ class CompaniesController < ApplicationController
     end
     def new 
         @company= Company.new()
+        if Company.exists?
+            flash.alert="A company is already present, contact your admin"
+            redirect_to login_index_path
+        end
     end 
     def create 
+        
         @company = Company.new(params.require(:company).permit(:company_name,:company_contact,:company_address))
         
         
