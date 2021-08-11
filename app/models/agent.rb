@@ -6,23 +6,24 @@ class Agent < ApplicationRecord
 
          
         #  before_validation :add_agent_to_company 
+        after_create:send_subagent_email
 
-         belongs_to :company 
+         belongs_to :company ,optional:true
          has_many :properties, through: :company
 
 
-
-        #  def add_agent_to_company
-        #     puts "inside callback"
+        def send_subagent_email
+          if self.role=="Non-admin"
+            @agent = self 
+            SendCodeMailer.with(agent:@agent).agent_credentials_email.deliver_now 
             
-        #     company = Company.create!(:company_name=>self.company_name,:company_contact=>self.company_contact ,:company_address=>self.company_address )
-              
-        #       puts "company created"
-        #       # self.company_id = @company.id
-        #       # self.role ="Admin"
-        #         self.update_attribute(:company_id,company.id)
-        #         self.update_attribute(:role,"Admin")
-              
-        #   end
+            
+
+          end 
+
+        
+
+        end
+        
 
 end

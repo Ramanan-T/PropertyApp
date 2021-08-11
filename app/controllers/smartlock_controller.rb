@@ -44,4 +44,6 @@ class SmartlockController < ApplicationController
         end 
 
     end
+
+    
 end

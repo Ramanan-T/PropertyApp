@@ -1,7 +1,12 @@
 class CompaniesController < ApplicationController
 
     def index
+        if current_agent.role=="Admin"
         @companies=Company.first
+        @agents = Agent.where(:role=>"Non-admin")
+        else
+            @companies=Company.first
+        end 
     end
     def new 
         @company= Company.new()

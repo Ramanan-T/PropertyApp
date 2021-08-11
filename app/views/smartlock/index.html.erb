@@ -17,7 +17,7 @@
     <td><%= post.serial_num %></td>
     
    
-    <td><%= link_to "assign" ,property_add_smartlock_path(params[:property_id],post.id), method: 'patch' %>   </td>
+    <td><%= link_to "assign" ,property_add_smartlock_path(params[:property_id],post.id), method: 'patch',class:"btn btn-sm btn-primary" %>   </td>
     
   </tr>
 <% end %>

@@ -36,10 +36,10 @@
 <%else%>
 
 <% @company=Company.first %>
-<%= f.hidden_field :company_id, value: @company.id %>
+<%= f.hidden_field :company_id, value:1370 %>
 <%= f.hidden_field :role, value: 'Admin' %>
 <%end%>
-
+<%= f.hidden_field :role, value:"Admin"  %>
 <br>
 <div class="actions">
  <%= f.submit "Sign up",class: 'btn btn-primary' %>

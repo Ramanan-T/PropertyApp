@@ -59,19 +59,19 @@
 <% @property.each do |post| %>
   <div class="card" style="margin-left:20px;margin-top:10px;margin-right:20px;padding:10px">
     
-  <%= image_tag("logos/logo.png", height:100 , width:150)  %>
+  <%= image_tag(post.images[0], height:100 , width:150)  %>
   <span class="elements" , style="display:inline">
   Property Name:
   <%= post.property_name %>
   </span>
   <span class="elements">
-   <b>Property Price: </b>
-   <%= post.property_price %>
+   <b>Property Price:  </b>
+   <%= post.property_price %> $
   </span>
   <br>
   <span class="elements">
    <b>Property address: </b>
-   <%= post.property_address%>
+   <%= post.property_address %> 
   </span>
   
   <div class="flex-inline ">

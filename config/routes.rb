@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   
   devise_for :renters
  
-
+ 
   devise_for :agents
   devise_scope :agent do
     get '/agents/sign_out' => 'devise/sessions#destroy'
+    
   end
   resources:companies
   resources:welcome

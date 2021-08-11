@@ -37,12 +37,21 @@ class PropertiesController < ApplicationController
 
     def add_smartlock
         @smartlock = Smartlock.find(params[:id])
+        for i in 0..9 do
+            newcode= rand(10 ** 6)
+            
+            Code.create!(:code=>newcode,:smartlock_id=>@smartlock.id)
+            
+        end
        if @smartlock.update(:property_id=>params[:property_id])
         redirect_to  properties_path
        else 
         render 'index'
        end 
+       
         
-    end 
+    end
+    
+    
 
 end

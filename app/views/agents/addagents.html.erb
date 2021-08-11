@@ -4,16 +4,16 @@
 <span><b>Creating a Sub agent</b> </span>
 <br><br>
 <%= form_for :agent, url:'/agentscreate' do |f| %>
-<%= f.label :Agent_name ,class: "label"%><br>
+<%= f.label :name ,class: "label"%><br>
 <%= f.text_field :name, class: "input"%><br>
-<%= f.label :Phone, class: "label"%><br>
+<%= f.label :phone, class: "label"%><br>
 <%= f.text_field :phone, class: "input"%><br>
 
 
 
-<%= f.label :Email , class: "label"%><br/>
-<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %><br>
-<%= f.hidden_field :role, value: nil  %>
+<%= f.label :email , class: "label"%><br/>
+<%= f.text_field :email, autofocus: true, autocomplete: "email", class: "input" %><br>
+<%= f.hidden_field :role, value:"Non-admin"  %>
 <%= f.hidden_field :company_id, value: current_agent.company_id %><br>
 <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>
