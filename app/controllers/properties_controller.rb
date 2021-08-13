@@ -41,17 +41,29 @@ class PropertiesController < ApplicationController
             newcode= rand(10 ** 6)
             
             Code.create!(:code=>newcode,:smartlock_id=>@smartlock.id)
-            
         end
-       if @smartlock.update(:property_id=>params[:property_id])
-        redirect_to  properties_path
-       else 
-        render 'index'
-       end 
-       
-        
+        if @smartlock.update(:property_id=>params[:property_id])
+            redirect_to  properties_path
+        else 
+            render 'index'
+        end 
     end
-    
-    
+    def edit
+        @property=Property.find(params[:id])
+    end
+
+
+
+    #updating 
+    def update
+        @property=Property.find(params[:id]) 
+        if @property.update(params[:property].permit(:name,  :agent_id,:address, :city, :rent, :bedrooms,:description,images: []))
+          redirect_to properties_path
+        else
+          render 'edit'
+        end
+    end
+
+   
 
 end

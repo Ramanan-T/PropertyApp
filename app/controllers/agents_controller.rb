@@ -33,5 +33,15 @@ class AgentsController < ApplicationController
             redirect_to companies_path
             flash.alert =" Sub Agent has been deleted"
         end
+    end 
+
+    def delete_image_attachment
+        @image = ActiveStorage::Attachment.find(params[:id])
+        @image.purge
+
+        redirect_to properties_path
     end
+
+
+
 end

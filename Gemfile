@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 gem 'devise'
 gem 'image_processing', '~> 1.2'
-
+gem 'activeadmin'
 
 
 gem 'bootstrap', '~> 4.0'
